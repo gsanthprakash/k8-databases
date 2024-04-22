@@ -5,34 +5,32 @@ metadata:
   namespace: roboshop
   labels:
     app: mongodb
-    tier: db 
-    project: roboshop 
+    tier: db
+    project: roboshop
 spec:
+  serviceName: "mongodb"
+  replicas: 1
   selector:
     matchLabels:
       app: mongodb
-      tier: db 
-      project: roboshop 
-  serviceName: "mongodb"
-  replicas: 1 # by default is 1
+      tier: db
+      project: roboshop
   template:
     metadata:
       labels:
         app: mongodb
-        tier: db 
+        tier: db
         project: roboshop
-    spec: 
+    spec:
       containers:
-      - name: gspvsr/mongodb:1.0.0
-        image: mongodb
+      - name: mongodb
+        image: mongodb:latest
         volumeMounts:
         - name: mongodb
           mountPath: /data/db
-  # this is PVC directly.
   volumeClaimTemplates:
   - metadata:
       name: mongodb
-      namespace: roboshop
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "roboshop-dynamic-ebs"
@@ -46,13 +44,13 @@ metadata:
   name: mongodb
   namespace: roboshop
 spec:
-  clusterIP: None #headless for databases
+  clusterIP: None
   selector:
     app: mongodb
-    tier: db 
-    project: roboshop 
+    tier: db
+    project: roboshop
   ports:
   - name: mongodb-port
     protocol: TCP
-    port: 27017 # this port belongs to service
-    targetPort: 27017 # this port belongs to container
+    port: 27017
+    targetPort: 27017
