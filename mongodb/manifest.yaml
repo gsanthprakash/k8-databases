@@ -21,13 +21,13 @@ spec:
         app: mongodb
         tier: db 
         project: roboshop
-  spec: 
-    containers:
-    - name: gspvsr/mongodb:1.0.0
-      image: mongodb
-      volumeMounts:
-      - name: mongodb
-        mountPath: /data/db
+    spec: 
+      containers:
+      - name: gspvsr/mongodb:1.0.0
+        image: mongodb
+        volumeMounts:
+        - name: mongodb
+          mountPath: /data/db
   # this is PVC directly.
   volumeClaimTemplates:
   - metadata:
