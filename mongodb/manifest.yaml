@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb
-  Noneamespace: roboshop
+  namespace: roboshop
   labels:
     app: mongodb
     tier: db 
